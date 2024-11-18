@@ -1,5 +1,6 @@
 import DayState from "@/components/DayState";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
 
@@ -18,10 +19,12 @@ export default function Home() {
   };
 
   const today = new Date();
-  const todayWeekDay = 0;
+  const todayWeekDay = today.getDay();
   const weekDays = ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'];
 
-  const sortedWeekDays = weekDays.slice(todayWeekDay +1).concat(weekDays.slice(0, todayWeekDay + 1)) 
+  const sortedWeekDays = weekDays
+    .slice(todayWeekDay + 1)
+    .concat(weekDays.slice(0, todayWeekDay + 1)); 
 
   return (
     <main className="container relative flex flex-col gap-8 px-4 pt-16">
@@ -49,7 +52,7 @@ export default function Home() {
             </div>
             <section className="grid grid-cols-7 bg-neutral-800 rounded-md p-2">
               {sortedWeekDays.map((day) => (
-                <div key={day} className="flex flex-col">
+                <div key={day} className="flex flex-col last:font-bold">
                   <span className="font-sans text-xs text-white text-center">
                     {day}
                   </span>
@@ -60,6 +63,15 @@ export default function Home() {
             </section>
           </div>
         ))}
+
+        <Link 
+        href="novo-habito" 
+        className="fixed text-center bottom-10 w-2/3 left-1/2 -translate-x-1/2 
+        text-neutral-900 bg-[#45edad] font-display font-regular text-2xl p-2
+        rounded-md"
+        >
+          Novo hábito
+        </Link>
     </main>
   );
 }
